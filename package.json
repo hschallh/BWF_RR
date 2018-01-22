@@ -1,0 +1,28 @@
+{
+    "author": "hschallh@gmail.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "bwf-rr",
+    "pebble": {
+        "displayName": "BWF RR",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "data/workout.txt",
+                    "name": "WORKOUT",
+                    "targetPlatforms": null,
+                    "type": "raw"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "uuid": "7ff0fa36-55b9-442a-b975-8c95538de4e5",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "1.0.0"
+}
