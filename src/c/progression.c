@@ -31,9 +31,56 @@ void destroyProgression(Progression* progression) {
 // Creates and adds an exercise to a progression. Exercises will be stored in
 // added order, with the first in position 0 and the last in position numOfExercises
 // @param progression The progression to add the new exercise to
-// @param  name The name of the exercise to create
-// @param  goal The number of seconds or reps needed to progress in the exercise
-// @param  unit The units the goal is in (reps or seconds)
-void addExercise(Progression* progression, char* name, int goal, char* unit) {
-  progression->exercises[progression->numOfExercises++] = createExercise(name, goal, unit);
+// @param  exercise The exercise to add to the progression
+void addExerciseToProgression(Progression* prog, Exercise* exercise) {
+  prog->exercises[prog->numOfExercises++] = exercise;
+}
+
+
+// Parses all the exercises from a string and adds them to a progression
+// @param prog The progression to add all of the exercises to
+// @param exercisesString The string to parse all of the exercises from. Should
+//                        be of the form:
+//                        <exercise1>#<exercise2>#...#<exerciseN>
+void parseExercisesForProgression(Progression* prog, char* exercisesStr) {
+  char* nextExSigLocation = strstr(exercisesStr, "#");
+
+  for (int i = 0; i < MAX_NUM_OF_EXERCISES_IN_PROGRESSION; i++) {
+    // If the location of the next exercise is null, we have reached the last
+    // exercise of the progression
+    if (nextExSigLocation == NULL) {
+      // Parse the last exercise for the progression
+      addExerciseToProgression(prog, parseExercise(exercisesStr));
+      break;
+    } else {
+      // Null terminate the current exercise
+      nextExSigLocation[0] = '\0';
+
+      // Parse the currect exercise and add it to the progression
+      addExerciseToProgression(prog, parseExercise(exercisesStr));
+
+      // Move to the next exercise
+      exercisesStr = nextExSigLocation + 1;
+      nextExSigLocation = strstr(exercisesStr, "#");
+    }
+  }
+}
+
+// Parse a progression from a string
+// @param progressionStr The string to parse. Should be of the form
+//                        <progression-name>#<exercise-list>
+// @return The new progression
+Progression* parseProgression(char* progressionStr) {
+  // Get the singifier for the start of the exercise list and numm terminate the
+  // progression name
+  char* exerciseSignifier = strstr(progressionStr, "#");
+  exerciseSignifier[0] = '\0';
+
+  // Create a new progression and parse the rest of the string to add its
+  // exercises
+  Progression* progression =
+      createProgression(progressionStr, MAX_NUM_OF_EXERCISES_IN_PROGRESSION);
+  parseExercisesForProgression(progression, exerciseSignifier + 1);
+
+  return progression;
 }

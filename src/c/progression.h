@@ -2,6 +2,8 @@
 
 #include "exercise.h"
 
+#define MAX_NUM_OF_EXERCISES_IN_PROGRESSION 10
+
 typedef struct Progression Progression;
   
 struct Progression {
@@ -11,5 +13,6 @@ struct Progression {
 };
 
 Progression* createProgression(char* name, int maxNumOfExercises);
+Progression* parseProgression(char* progressionStr);
 void destroyProgression(Progression* progression);
-void addExercise(Progression* progression, char* name, int goal, char* unit);
+void addExerciseToProgression(Progression* progression, char* name, int goal, char* unit);
