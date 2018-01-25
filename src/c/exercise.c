@@ -35,3 +35,22 @@ void destroyExercise(Exercise* exercise) {
 int exerciseNeedsTimer(Exercise* exercise) {
   return strcmp(exercise->unit, TIME_UNITS) == 0;
 }
+
+// Parses an exercise from a string and adds it to a progression
+// @param exerciseString The string to parse should be of the form:
+//                        <name>|<goal>|<unit>
+Exercise* parseExercise(char* exerciseStr) {
+  // Find the locations of the separaters and null terminate them
+  char *goalSigLocation = strstr(exerciseStr, "|"),
+       *unitSigLocation = strstr(goalSigLocation + 1, "|");
+  goalSigLocation[0] = '\0';
+  unitSigLocation[0] = '\0';
+
+  // Set the name, unit, and convert the goal
+  char *name = exerciseStr, *unit = unitSigLocation + 1;
+  int goal;
+  sscanf(goalSigLocation + 1, "%i", &goal);
+
+  // Return a new Exercise
+  return createExercise(name, goal, unit);
+}
