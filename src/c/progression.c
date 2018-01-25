@@ -8,9 +8,10 @@
 // @param  maxNumOfExercises The amount of space to allocate for the exercise array
 // @return The newly created progression
 Progression* createProgression(char* name, int maxNumOfExercises) {
-  Progression* progression = malloc(sizeof(Progression));
-  progression->name = malloc(sizeof(char) * (strlen(name) + 1));
-  progression->exercises = malloc(sizeof(Exercise) * maxNumOfExercises);
+  Progression* progression = (Progression*)malloc(sizeof(Progression));
+  progression->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
+  progression->exercises = (Exercise**)malloc(maxNumOfExercises * sizeof(Exercise));
+  
   strcpy(progression->name, name);
   progression->numOfExercises = 0;
   

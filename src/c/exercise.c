@@ -10,10 +10,11 @@
 // @param  unit The units the goal is in (reps or seconds)
 // @return The newly created exercise
 Exercise* createExercise(char* name, int goal, char* unit) {
-  Exercise* exercise = malloc(sizeof(Exercise));
-  exercise->name = malloc(sizeof(char) * (strlen(name) + 1));
-  exercise->unit = malloc(sizeof(char) * (strlen(unit) + 1));
-  strcpy(exercise->name, name);  
+  Exercise* exercise = (Exercise*)malloc(sizeof(Exercise));
+  exercise->name = (char*)malloc(sizeof(char*) * (strlen(name) + 1));
+  exercise->unit = (char*)malloc(sizeof(char*) * (strlen(unit) + 1));
+  
+  strcpy(exercise->name, name);
   strcpy(exercise->unit, unit);
   exercise->goal = goal;
   
