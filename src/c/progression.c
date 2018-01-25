@@ -28,15 +28,6 @@ void destroyProgression(Progression* progression) {
   free(progression);
 }
 
-// Creates and adds an exercise to a progression. Exercises will be stored in
-// added order, with the first in position 0 and the last in position numOfExercises
-// @param progression The progression to add the new exercise to
-// @param  exercise The exercise to add to the progression
-void addExerciseToProgression(Progression* prog, Exercise* exercise) {
-  prog->exercises[prog->numOfExercises++] = exercise;
-}
-
-
 // Parses all the exercises from a string and adds them to a progression
 // @param prog The progression to add all of the exercises to
 // @param exercisesString The string to parse all of the exercises from. Should
@@ -50,14 +41,14 @@ void parseExercisesForProgression(Progression* prog, char* exercisesStr) {
     // exercise of the progression
     if (nextExSigLocation == NULL) {
       // Parse the last exercise for the progression
-      addExerciseToProgression(prog, parseExercise(exercisesStr));
+      prog->exercises[prog->numOfExercises++] = parseExercise(exercisesStr);
       break;
     } else {
       // Null terminate the current exercise
       nextExSigLocation[0] = '\0';
 
       // Parse the currect exercise and add it to the progression
-      addExerciseToProgression(prog, parseExercise(exercisesStr));
+      prog->exercises[prog->numOfExercises++] = parseExercise(exercisesStr);
 
       // Move to the next exercise
       exercisesStr = nextExSigLocation + 1;

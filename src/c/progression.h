@@ -12,7 +12,5 @@ struct Progression {
   int numOfExercises;
 };
 
-Progression* createProgression(char* name, int maxNumOfExercises);
 Progression* parseProgression(char* progressionStr);
 void destroyProgression(Progression* progression);
-void addExerciseToProgression(Progression* progression, char* name, int goal, char* unit);
