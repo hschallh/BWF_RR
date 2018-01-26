@@ -33,29 +33,29 @@ void parseProgressionsForWorkout(Progression* progressions[],
 // Parse and entire BWF RR from a file
 void parseWorkout(Workout* workout, char* filename) {
   // Open the workout file
-  FILE* workoutFile = fopen(filename, "r");
+  // FILE* workoutFile = fopen(filename, "r");
   char buf[999];
 
   // Read the first line and parse the Stretching Exercises
-  fgets(buf, sizeof(buf), workoutFile);
+  // fgets(buf, sizeof(buf), workoutFile);
   workout->stretches = createWarmup("Dynamic Stretches", 10, "reps");
   parseExercisesForWarmup(workout->stretches, buf);
 
   // Read the second line and parse the Bodyline Exercises
-  fgets(buf, sizeof(buf), workoutFile);
+  // fgets(buf, sizeof(buf), workoutFile);
   workout->bodylineDrills = createWarmup("Bodyline Drills", 60, "secs");
   parseExercisesForWarmup(workout->bodylineDrills, buf);
 
   // Read the third line and parse the Skill Exercises
-  fgets(buf, sizeof(buf), workoutFile);
+  // fgets(buf, sizeof(buf), workoutFile);
   parseProgressionsForWorkout(workout->skillProgressions, buf);
 
   // Read the fourth line and parse the Strength Exercises
-  fgets(buf, sizeof(buf), workoutFile);
+  // fgets(buf, sizeof(buf), workoutFile);
   parseProgressionsForWorkout(workout->strengthProgressions, buf);
 
   // Close the workout file
-  fclose(workoutFile);
+  // fclose(workoutFile);
 }
 
 // Build a workout plan
