@@ -1,23 +1,23 @@
-#include <pebble.h>
-#include <string.h>
-#include <stdlib.h>
 #include "exercise.h"
-
+#include <pebble.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Allocates memory for a new exercise and builds it
 // @param  name The name of the exercise
-// @param  goal The number of seconds or reps needed to progress 
+// @param  goal The number of seconds or reps needed to progress
 // @param  unit The units the goal is in (reps or seconds)
 // @return The newly created exercise
 Exercise* createExercise(char* name, int goal, char* unit) {
   Exercise* exercise = (Exercise*)malloc(sizeof(Exercise));
   exercise->name = (char*)malloc(sizeof(char*) * (strlen(name) + 1));
   exercise->unit = (char*)malloc(sizeof(char*) * (strlen(unit) + 1));
-  
+
   strcpy(exercise->name, name);
   strcpy(exercise->unit, unit);
   exercise->goal = goal;
-  
+
   return exercise;
 };
 

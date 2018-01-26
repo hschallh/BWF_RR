@@ -1,20 +1,22 @@
-#include <pebble.h>
-#include <string.h>
-#include <stdlib.h>
 #include "progression.h"
+#include <pebble.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Allocates memory for a new progression. Exercises can be added later
 // @param  name The name of the progression
-// @param  maxNumOfExercises The amount of space to allocate for the exercise array
+// @param  maxNumOfExercises The amount of space to allocate for the exercise
+// array
 // @return The newly created progression
 Progression* createProgression(char* name, int maxNumOfExercises) {
   Progression* progression = (Progression*)malloc(sizeof(Progression));
   progression->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
-  progression->exercises = (Exercise**)malloc(maxNumOfExercises * sizeof(Exercise));
-  
+  progression->exercises =
+      (Exercise**)malloc(maxNumOfExercises * sizeof(Exercise));
+
   strcpy(progression->name, name);
   progression->numOfExercises = 0;
-  
+
   return progression;
 }
 

@@ -13,6 +13,7 @@ struct Warmup {
   int numOfWarmups;
 };
 
+Warmup* createWarmup(char* name, int goal, char* unit);
 void parseExercisesForWarmup(Warmup* warmup, char* exercisesStr);
 void destroyWarmup(Warmup* warmup);
 int warmupNeedsTimer(Warmup* warmup);

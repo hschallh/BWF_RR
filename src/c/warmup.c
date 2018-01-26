@@ -1,10 +1,9 @@
-#include <pebble.h>
 #include "warmup.h"
+#include <pebble.h>
 #include <stdlib.h>
 #include <string.h>
 
-
-// Create a new warmup routine. Warmups are a series of exercises with 
+// Create a new warmup routine. Warmups are a series of exercises with
 // the same goal and unit, all to be completed every workout
 // @param name The name of the warmup
 // @param goal The goal for all the warmup exercises
@@ -21,11 +20,12 @@ Warmup* createWarmup(char* name, int goal, char* unit) {
   return warmup;
 }
 
-// Adds a warmup to the routine. 
+// Adds a warmup to the routine.
 // @param wu The Warmup to add a warmup to
 // @param name The name of the warmup to add to the Warmup
 void addExerciseToWarmup(Warmup* warmup, char* name) {
-  warmup->warmups[warmup->numOfWarmups] = (char*)malloc(sizeof(char) * (strlen(name) + 1));
+  warmup->warmups[warmup->numOfWarmups] =
+      (char*)malloc(sizeof(char) * (strlen(name) + 1));
   strcpy(warmup->warmups[warmup->numOfWarmups++], name);
 }
 
@@ -59,7 +59,6 @@ void parseExercisesForWarmup(Warmup* warmup, char* exercisesStr) {
 void destroyWarmup(Warmup* warmup) {
   for (int i = 0; i < warmup->numOfWarmups; free(warmup->warmups[i++]))
     ;
-  free(warmup->warmups);
   free(warmup->name);
   free(warmup->unit);
   free(warmup);
@@ -69,6 +68,6 @@ void destroyWarmup(Warmup* warmup) {
 // is rep based
 // @param  The warmup to check
 // @return Whether or not the warmup is time based
-int warmupNeedsTimer(Warmup* warmup) { 
-  return strcmp(warmup->unit, TIME_UNITS) == 0; 
+int warmupNeedsTimer(Warmup* warmup) {
+  return strcmp(warmup->unit, TIME_UNITS) == 0;
 }

@@ -3,7 +3,7 @@
 #define TIME_UNITS "secs"
 
 typedef struct Exercise Exercise;
-  
+
 struct Exercise {
   char* name;
   int goal;
